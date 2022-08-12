@@ -1,29 +1,16 @@
-# springboot-jjwt
+package com.yang.jjwt.utils;
 
-springboot+jjwt整合应用
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
-> 参考: [https://www.jianshu.com/p/aad403ddd1e2/](https://www.jianshu.com/p/aad403ddd1e2/)
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
+import java.util.Date;
+import java.util.UUID;
 
-## jwt
-
-JWT(Json Web Token)是实现token技术的一种解决方案，用于前端和服务端进行身份认证
-
-## 使用
-
-- 添加依赖
-
-```
-<!-- jwt -->
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt</artifactId>
-    <version>0.9.1</version>
-</dependency>
-```
-
-- jwt工具类
-
-```
 public class JwtUtil {
 
     //有效期为
@@ -113,20 +100,3 @@ public class JwtUtil {
                 .getBody();
     }
 }
-```
-
-- 测试
-
-```
-@Test
-void contextLoads() throws Exception {
-    String jwt = JwtUtil.createJWT("test");
-    System.out.println("jwt:" + jwt);
-    Claims claims = JwtUtil.parseJWT(jwt);
-    System.out.println(claims.getSubject());
-}
-```
-
-结果:
-
-![1](./docs/1.jpg)
